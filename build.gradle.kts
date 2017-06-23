@@ -1,47 +1,54 @@
 buildscript {
-	val springBootVersion = "1.4.3.RELEASE"
-	val kotlinVersion = "1.0.6"
-	extra["kotlinVersion"] = kotlinVersion
+    val springBootVersion = "1.4.3.RELEASE"
+    val kotlinVersion = "1.0.6"
+    extra["kotlinVersion"] = kotlinVersion
 
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
+    }
 
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-		classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
-		classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
-		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-	}
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    }
 }
 
 apply {
-	plugin("kotlin")
-	plugin("kotlin-spring")
-	plugin("kotlin-jpa")
-	plugin("org.springframework.boot")
+    plugin("kotlin")
+    plugin("kotlin-spring")
+    plugin("kotlin-jpa")
+    plugin("groovy")
+    plugin("org.springframework.boot")
 }
 
 version = "0.0.1-SNAPSHOT"
 
 configure<JavaPluginConvention> {
-	setSourceCompatibility(1.8)
-	setTargetCompatibility(1.8)
+    setSourceCompatibility(1.8)
+    setTargetCompatibility(1.8)
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 val kotlinVersion = extra["kotlinVersion"] as String
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web")
-	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-	compile("com.h2database:h2")
-	compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-	compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-	compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4")
-	testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("com.h2database:h2")
+    compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4")
+    compile("io.reactivex.rxjava2:rxjava:2.0.9")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("junit:junit:4.12")
+    testCompile("org.codehaus.groovy:groovy-all:2.4.4")
+    testCompile("org.spockframework:spock-core:1.0-groovy-2.4")
+    testCompile("cglib:cglib-nodep:2.2")
+
 }
 
